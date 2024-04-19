@@ -1,9 +1,8 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import { initialData } from './Mocks/initialData';
+import { indexCountriesByName } from './utils/functions';
+
+test('load all options', () => {
+  const options = indexCountriesByName(initialData)
+  expect(Object.keys(options).length).toBe(16657);
 });

@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
+import SearchTxt from './components/search/SearchTxt';
+import { initialData } from './Mocks/initialData';
+import { indexCountriesByName } from './utils/functions';
+import { ObjIndexCountry } from './interfaces/interface';
+
+
 function App() {
+  const [options, setOptions] = useState<ObjIndexCountry>({})
+
+  useEffect( () => {
+    setOptions(indexCountriesByName(initialData))
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='flex justify-center items-center content-center	 w-screen h-screen'>
+        <div>
+          <SearchTxt options={options}/>
+        </div>
     </div>
   );
 }
